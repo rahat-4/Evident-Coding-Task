@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Register {% endblock %}
+{% block css_style %}
+<style>
+    .re-gister {
+        width: 400px;
+        background: #ecf0f3;
+        font-family: 'Nunito', sans-serif;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<center>
+    <div class="re-gister">
+        <h3 class='ar'>Register</h3>
+        <form method="POST">
+            {{ form|crispy }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger btn-block">Register</button>
+        </form>
+        <br>
+        <p>Already have an account? <a href={% url 'User_Auth:user_login' %}>Login</a></p>
+    </div>
+</center>
+{%  endblock %}

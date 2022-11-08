@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Khoj The Search {% endblock %}
+{% block css_style %}
+<style>
+    .value_li {
+        background: #ecf0f3;
+        font-family: 'Nunito', sans-serif;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+    }
+    .ar {
+        font-family: 'Nunito', sans-serif;
+        border-radius: 20px;
+        box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+    }
+    .log-out {
+        font-family: 'Nunito', sans-serif;
+        box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <a class="btn btn-dark my-2 my-sm-0 btn-lg log-out" href={% url 'User_Auth:user_logout' %}>Logout</a>
+</div>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800 value_li">Khoj The Search</h1>
+    <a class="btn btn-warning my-2 my-sm-0 value_li" href={% url 'Khoj_The_Search:input_data'%}>API</a>
+</div>
+<br>
+<center>
+    <div class="value_li">
+        <form method="POST">
+            {{ form|crispy }}
+            {% csrf_token %}
+    <button type="submit" class="btn btn-danger btn-block ar">KHOJ</button>
+
+        </form>
+        <br>
+    </div>
+</center>
+<br>
+<br>
+{% if found != "" %}
+<div class="card value_li">
+    <div class="card-header">
+        <div class="form-row justify-content-between">
+            <div class="col-md-2">
+                <strong>Result: {{ found }}</strong>
+            </div>
+            <div class="col-md-10">
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<br>
+{% endblock %}
